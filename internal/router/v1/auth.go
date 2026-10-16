@@ -12,6 +12,6 @@ func mountAuthRouter(
 ) {
 	authGrp := routerGrp.Group("/auth")
 
-	authGrp.GET("/sign-up", hdlr.SignUp)
-	authGrp.GET("/sign-in", hdlr.SignIn)
+	authGrp.POST("/sign-up", hdlr.SignUp)
+	authGrp.POST("/sign-in", hdlr.SignIn)
 }
