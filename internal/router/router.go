@@ -11,6 +11,7 @@ import (
 func New(mw *middleware.Middleware, hdlr *handler.Handler) *echo.Echo {
 	e := echo.New()
 
+	e.Use(mw.Request.HandleError)
 	e.Use(mw.Request.SetRequestID)
 
 	apiGrp := e.Group("/api")
