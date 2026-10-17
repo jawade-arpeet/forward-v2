@@ -97,3 +97,23 @@ func (c *PostgresClient) QueryOne[T any](
 
 	return &result, nil
 }
+
+func (c *PostgresClient) QueryAll[T any](
+	ctx context.Context,
+	query string,
+	args pgx.NamedArgs,
+) ([]T, error) {
+	rows, err := c.pool.Query(ctx, query, args)
+	if err != nil {
+		return nil, c.wrapErr(err)
+	}
+
+	defer rows.Close()
+
+	var result []T
+	if err := pgxscan.ScanAll(&result, rows); err != nil {
+		return nil, c.wrapErr(err)
+	}
+
+	return result, nil
+}
