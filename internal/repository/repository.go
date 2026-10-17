@@ -5,11 +5,13 @@ import (
 )
 
 type Repository struct {
-	Auth *AuthRepository
+	Auth     *AuthRepository
+	Platform *PlatformRepository
 }
 
 func New(clt *client.Client) *Repository {
 	return &Repository{
-		Auth: newAuthRepository(clt.Postgres),
+		Auth:     newAuthRepository(clt.Postgres),
+		Platform: newPlatformRepository(clt.Postgres),
 	}
 }

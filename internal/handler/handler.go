@@ -3,13 +3,15 @@ package handler
 import "forward/internal/service"
 
 type Handler struct {
-	Health *HealthHandler
-	Auth   *AuthHandler
+	Health   *HealthHandler
+	Auth     *AuthHandler
+	Platform *PlatformHandler
 }
 
 func New(svc *service.Service) *Handler {
 	return &Handler{
-		Health: newHealthHandler(),
-		Auth:   newAuthHandler(svc.Auth),
+		Health:   newHealthHandler(),
+		Auth:     newAuthHandler(svc.Auth),
+		Platform: newPlatformHandler(svc.Platform),
 	}
 }

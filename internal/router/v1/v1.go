@@ -14,4 +14,5 @@ func MountV1Router(
 
 	mountHealthRouter(v1Grp, hdlr.Health)
 	mountAuthRouter(v1Grp, hdlr.Auth)
+	mountPlatformRouter(v1Grp, hdlr.Platform)
 }
